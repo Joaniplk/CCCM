@@ -20,25 +20,24 @@ COAL = drop.Drop(DROPWIDTH, DROPHEIGHT, 0, 0, CO_VEL, 'coaldrop.png', WIDTH)
 CANDY = drop.Drop(DROPWIDTH, DROPHEIGHT, 0, 0, CA_VEL, 'candycanedrop.png', WIDTH)
 PLAYER = player.Player(PLAYERWIDTH, PLAYERHEIGHT, VEL, 'present character1.png', 5, 0, 'left', WIDTH)
 
-GAME_OVER_TXT = txt.Text('sans', 80, "You lost!", red)
-SCORE_TXT = txt.Text('Verdana', 40, "Your Score: " + str(PLAYER.score), D_YELLOW)
-HP_TXT = txt.Text('Verdana', 40, "HitPoints: " + str(PLAYER.HP), D_YELLOW)
-
 
 def main():
     clock = pygame.time.Clock()
-    run = True
-    while run:
+    running = True
+    while running:
         clock.tick(FPS)
         # Closing the game with the 'X'
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
-        if PLAYER.HP < 0:
+                running = False
+        GAME_OVER_TXT = txt.Text('sans', 80, "You lost!", red)
+        SCORE_TXT = txt.Text('Verdana', 40, "Your Score: " + str(PLAYER.score), D_YELLOW)
+        HP_TXT = txt.Text('Verdana', 40, "HitPoints: " + str(PLAYER.HP), D_YELLOW)
+        if PLAYER.HP <= 0:
             GAME_OVER_TXT.draw(WIN, WIDTH / 2 - GAME_OVER_TXT.text.get_width() / 2, HEIGHT / 2 - GAME_OVER_TXT.text.get_height())
             pygame.display.update()
             time.sleep(1.75)
-            run = False
+            running = False
         PLAYER.move()
         if  COAL.rect.colliderect(PLAYER.rect):
             PLAYER.HP -= 1
