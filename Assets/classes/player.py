@@ -14,7 +14,7 @@ class Player:
         PLAYER_CHARACTER_IMAGE = pygame.image.load(os.path.join(image_uri))
         self.PLAYER = pygame.transform.scale(PLAYER_CHARACTER_IMAGE, (self.width, self.height))
         self.x = self.bWIDTH/2 - self.width
-        self.y = 300
+        self.y = 450
         self.rect_player()
 
     
