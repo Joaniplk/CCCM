@@ -12,7 +12,7 @@ pygame.display.set_caption("Christmas Candy Collection Simulator 1.0")
 D_YELLOW = (50, 50, 22)
 red = (255, 50, 50)
 FPS = 60
-VEL, CO_VEL, CA_VEL = 6.5, 5, 3
+VEL, CO_VEL, CA_VEL = 6.5, 6, 5.5
 PLAYERWIDTH, PLAYERHEIGHT, DROPWIDTH, DROPHEIGHT = 156, 256, 64, 64
 BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join('Xmas_background.png')), (WIDTH, HEIGHT))
 
@@ -38,7 +38,6 @@ def main():
             pygame.display.update()
             time.sleep(1.75)
             running = False
-        PLAYER.move()
         if  COAL.rect.colliderect(PLAYER.rect):
             PLAYER.HP -= 1
             COAL.reset_rect()
@@ -53,7 +52,7 @@ def main():
         WIN.blit(BACKGROUND, (0, 0))
         CANDY.update_drop(WIN)
         COAL.update_drop(WIN)
-        PLAYER.draw(WIN)
+        PLAYER.update(WIN)
         HP_TXT.draw(WIN, WIDTH - HP_TXT.text.get_width() - 10, 10)
         SCORE_TXT.draw(WIN, 0, 0)
         pygame.display.update()
